@@ -1,6 +1,4 @@
 # Package installation and configuration on Linux
-## Author: Lu
-
 
 ```{r global_options, include=FALSE, echo=FALSE}
 knitr::opts_chunk$set(eval=FALSE)
