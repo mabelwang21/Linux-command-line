@@ -1,0 +1,216 @@
+# Package installation and configuration on Linux
+## Author: Lu
+
+
+```{r global_options, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(eval=FALSE)
+```
+
+###  Linux (Ubuntu 14.04)
+#### Packages installed to `/path/to/your/Program/`
+#### **Two options:**
+
+**1. dump into `/usr/local/bin`**
+
+```{r}
+# put in usr/local/bin
+cd <path>/to/your/program
+sudo cp * /usr/local/bin  
+```
+
+**2. add path in `.bashrc`, copy paste the path at the bottom of the file, don't forget to source it!**
+
+```{r}
+cd
+ls -al
+nano .bashrc
+export PATH=$PATH:/<path>/to/your/program
+#Ctrl+x, save (yes)
+source ~/.bashrc
+cd ..
+```
+
+### [FastQC](http:/www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+Need to first make sure java installed, check:
+####files can be downloaded using `wget`
+
+```{r}
+java --version
+# if not installed
+sudo apt-get install default-jre
+```
+
+Actually installing FastQC is as simple as unzipping the zip file it comes in into a
+suitable location.  That's it.  Once unzipped it's ready to go
+
+```{r}
+wget http:/www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip
+unzip fastqc_v0.11.5.zip
+cd ./FastQc
+chmod 755 fastqc
+
+nano ~/.bashrc
+export PATH=$PATH:/path/to/your/Program/FastQC
+source ~/.bashrc
+```
+
+
+### [Prinseq](http:/prinseq.sourceforge.net/manual.html)
+
+```{r}
+wget https:/sourceforge.net/projects/prinseq/files/standalone/prinseq-lite-0.20.4.tar.gz
+tar -zxvf prinseq-lite-0.20.4.tar.gz
+
+sudo cp -puv prinseq-lite-0.20.4/prinseq-lite.pl /usr/local/bin/prinseq-lite && chmod +x /usr/local/bin/prinseq-lite
+sudo cp -puv prinseq-lite-0.20.4/prinseq-graphs.pl /usr/local/bin/prinseq-graphs && chmod +x /usr/local/bin/prinseq-graphs
+```
+
+
+### [FASTX_Toolkit](http:/hannonlab.cshl.edu/fastx_toolkit/commandline.html)
+
+**Ved installed it under `/home/bqhs/Bioinformatics` **
+```{r}
+#wget http:/hannonlab.cshl.edu/fastx_toolkit/fastx_toolkit_0.0.13_binaries_Linux_2.6_amd64.tar.bz2
+#tar -xjf fastx_toolkit_0.0.13_binaries_Linux_2.6_amd64.tar.bz2
+
+export PATH=$PATH:/home/bqhs/Bioinformatics/fastx_toolkit
+
+```
+
+
+### [tophat2](https:/ccb.jhu.edu/software/tophat/manual.shtml)
+
+```{r}
+cd /path/to/your/Program
+wget https:/ccb.jhu.edu/software/tophat/downloads/tophat-2.1.1.Linux_x86_64.tar.gz
+tar -zxvf tophat-2.1.1.Linux_x86_64
+nano .bashrc
+export PATH=$PATH:/path/to/your/Program/tophat-2.1.1.Linux_x86_64
+source ~/.bashrc
+cd ..
+```
+
+
+### [bowtie2](http:/bowtie-bio.sourceforge.net/bowtie2/manual.shtml)
+
+```{r}
+wget https:/sourceforge.net/projects/bowtie-bio/files/bowtie2/2.2.9/bowtie2-2.2.9-linux-x86_64.zip
+unzip bowtie2-2.2.9-linux-x86_64.zip
+
+nano ~/.bashrc
+export PATH=$PATH:/path/to/your/Program/bowtie2-2.2.9
+source ~/.bashrc
+cd ..
+```
+
+
+### [STAR](https:/github.com/alexdobin/STAR)
+
+```{r}
+wget https:/github.com/alexdobin/STAR/archive/STAR_2.5.0a.tar.gz
+tar -zxvf STAR_2.5.0a.tar.gz
+cd STAR-STAR_2.5.0a/source
+make STAR
+
+nano ~/.bashrc
+export PATH=$PATH:/path/to/your/Program/STAR_2.5.0a/bin/Linux_x86_64
+source ~/.bashrc
+cd ..
+```
+
+
+### [BWA](http:/bio-bwa.sourceforge.net/bwa.shtml)
+
+```{r}
+wget https:/sourceforge.net/projects/bio-bwa/files/bwa-0.7.15.tar.bz2
+bunzip2 bwa-0.7.15.tar.bz2
+tar -xvf bwa-0.7.15.tar
+cd ./bwa-0.7.15m
+make 
+
+nano ~/.bashrc
+export PATH=$PATH:/path/to/your/Program/bwa-0.7.15
+source ~/.bashrc
+cd ..
+```
+
+
+### [cufflinks](http:/cole-trapnell-lab.github.io/cufflinks/manual/)
+
+```{r}
+wget http:/cole-trapnell-lab.github.io/cufflinks/assets/downloads/cufflinks-2.2.1.Linux_x86_64.tar.gz
+tar -zxvf cufflinks-2.2.1.Linux_x86_64.tar.gz
+
+nano ~/.bashrc
+export PATH=$PATH:/path/to/your/Program/cufflinks-2.2.1.Linux_x86_64
+source ~/.bashrc
+cd ..
+```
+
+
+### [samtools](http:/www.htslib.org/doc/samtools.html)
+
+```{r}
+wget https:/sourceforge.net/projects/samtools/files/samtools/1.3.1/samtools-1.3.1.tar.bz2
+bunzip2 samtools-1.3.1.tar.bz2 
+tar -xvf samtools-1.3.1.tar
+cd ./samtools-1.3.1
+make
+
+nano ~/.bashrc
+export PATH=$PATH:/path/to/your/Program/samtools-1.3.1
+source ~/.bashrc
+cd ..
+```
+
+
+### [bcftools](http:/www.htslib.org/doc/bcftools.html)
+
+```{r}
+wget https:/sourceforge.net/projects/samtools/files/samtools/1.3.1/bcftools-1.3.1.tar.bz2
+bunzip2 bcftools-1.3.1.tar.bz2
+tar -xvf bcftools-1.3.1.tar
+cd ./bcftools-1.3.1
+make
+
+nano ~/.bashrc
+export PATH=$PATH:/path/to/your/Program/bcftools-1.3.1
+source ~/.bashrc
+cd ..
+```
+
+
+### [bedtools](http:/bedtools.readthedocs.io/en/latest/)
+
+```{r}
+wget https:/github.com/arq5x/bedtools2/releases/download/v2.25.0/bedtools-2.25.0.tar.gz
+tar -zxvf bedtools-2.25.0.tar.gz
+cd ./bedtools2
+make
+
+nano ~/.bashrc
+export PATH=$PATH:/path/to/your/Program/bedtools2
+source ~/.bashrc
+```
+
+
+### [HTSeq](http:/www-huber.embl.de/users/anders/HTSeq/doc/overview.html)
+
+Make sure that you the standard GNU build environment installed, as well as Python together with its development headers and numpy and matplotlib. Users of Ubuntu Linux simply type:
+
+```{r}
+sudo apt-get install build-essential python2.7-dev python-numpy python-matplotlib
+```
+
+To install HTSeq itself, download the source package from the `HTSeq PyPI` page, unpack the tarball, go into the directory with the unpacked files and type there
+
+```{r}
+wget --no-check-certificate https:/pypi.python.org/packages/source/H/HTSeq/HTSeq-0.6.1p1.tar.gz
+tar -zxvf HTSeq-0.6.1p1.tar.gz
+cd ./HTSeq-0.6.1p1
+python setup.py build
+sudo python setup.py install
+#automatically dump the htseq-count to /usr/local/bin and chmod to 775
+cd ..
+```
+
